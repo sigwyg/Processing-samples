@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Processing sample</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" itemprop="url" href="/">
+    <link rel="stylesheet" href="">
+    <script src="./p5.min.js"></script>
+<script>
+function setup() {
+    resizeCanvas(600, 400);
+    background(155);
+    smooth();
+}
+
+var num = 60;
+var x = [ num ];
+var y = [ num ];
+
+function draw() {
+    background(50);
+
+    for(var i=1; i<num; i++){
+        x[i-1] = x[i]; // x[0] = x[1]
+        y[i-1] = y[i];
+    }
+
+    x[num-1] = mouseX;
+    y[num-1] = mouseY;
+    var speed = abs(mouseX - pmouseY) + abs(mouseY - pmouseY);
+
+    for(var i=0; i<num; i++) {
+        ellipse(x[i], y[i], speed/2, speed/2);
+    }
+}
+
+</script>
+</head>
+<body>
+
+<h1>Processing.js Sample</h1>
+<p>p5.jsはProcessing公式ライブラリ。JavaScriptコードで直接書く。</p>
+
+</body>
+</html>

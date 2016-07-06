@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Processing sample</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" itemprop="url" href="/">
+    <link rel="stylesheet" href="">
+    <script src="../processing.min.js"></script>
+    <script type="text/processing" data-processing-target="mycanvas">
+void setup() {
+  size(300, 200);
+  background(155);
+  smooth();
+}
+
+int num = 60;
+float x[] = new float[num];
+float y[] = new float[num];
+
+void draw() {
+  // fill(): inner paint
+  // noFill(): no paint
+  // stroke(): draw line
+  // noStroke(): noline
+  // ellipse(): draw circle
+  // center x, center y, x radius, y radius
+
+  background(50);
+  //stroke(random(255), random(255), random(255));
+  
+  for(int i=1; i<num; i++){
+    x[i-1] = x[i]; // x[0] = x[1]
+    y[i-1] = y[i];
+  }
+  
+  x[num-1] = mouseX;
+  y[num-1] = mouseY;
+  float speed = abs(mouseX - pmouseY) + abs(mouseY - pmouseY);
+  
+  for(int i=0; i<num; i++) {
+    ellipse(x[i], y[i], speed/2, speed/2);
+  }
+  
+  /*
+  fill(255,100);
+
+  ellipse(mouseX, mouseY, speed, speed);
+  */
+}
+    </script>
+</head>
+<body>
+
+<h1>Processing.js Sample</h1>
+<p>Processing.jsはProcessingのJSコンバーター。Processingコードをそのまま貼り付けて使用できる。JQuery作者のJohn Resigが書いた。</p>
+<canvas id="mycanvas"></canvas>
+
+</body>
+</html>
