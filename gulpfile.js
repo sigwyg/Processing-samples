@@ -8,6 +8,6 @@ gulp.task('default', function() {
             baseDir: "./public/"
         }
     });
-    gulp.watch("public/*.html").on('change', browserSync.reload);
+    gulp.watch("public/**").on('change', browserSync.reload);
 });
 
